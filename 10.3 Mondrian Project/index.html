@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+    .container1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      display: grid;
+      background-color: #F0F1EC;
+      height: 749px;
+      width: 749px;
+      grid-template-columns: 320px 9px 198px 9px 153px 9px 50px;
+      grid-template-rows: 414px 9px 130px 10px 155px 9px 20px;
+    }
+
+    .red {
+      background-color: #E72F24;
+      grid-column: 1 / 1;
+    }
+
+    .black1 {
+     background-color: #000;
+     grid-column: 2 / 3;
+     grid-row: 1 / 8;
+    }
+
+    .black2 {
+     background-color: #000;
+     grid-column: 1 / 8;
+     grid-row: 2 / 3;
+    }
+
+    .black3 {
+     background-color: #000;
+     grid-column: 1 / 7;
+     grid-row: 6 / 7;
+    }
+
+    .black4 {
+     background-color: #000;
+     grid-column: 6 / 7;
+     grid-row: 2 / 8;
+    }
+
+    .black5 {
+     background-color: #000;
+     grid-column: 6 / 7;
+     grid-row: 4 / 5;
+    }
+
+    .black6 {
+     background-color: #232629;
+     grid-column: 5 / 6;
+     grid-row: 7 / 8;
+    }
+
+    .black7 {
+     background-color: #000;
+     grid-column: 4 / 5;
+     grid-row: 7 / 8;
+    }
+
+    .navy {
+     background-color: #004592;
+     grid-column: 6 / 8;
+     grid-row: 2 / 4;
+    }
+
+    .yellow {
+     background-color: #F9D01E;
+     grid-column: 3 / 4;
+     grid-row: 7 / 8;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+  <div class="container1">
+    <div class="container">
+      <div class="red"></div>
+      <div class="navy"></div>
+      <div class="yellow"></div>
+      <div class="black1"></div>
+      <div class="black2"></div>
+      <div class="black3"></div>
+      <div class="black4"></div>
+      <div class="black5"></div>
+      <div class="black6"></div>
+      <div class="black7"></div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+.background, html, header, footer {
+    background-color: #D0E7D2 !important;
+}
+
+.nav-pills .nav-link {
+    color: black !important;
+}
+
+.title {
+    background-color: #618264;
+}
+
+.container {
+    display: grid;
+    justify-content: center;
+}
+
+.col-md-4 {
+    width: 100%;
+}
+
+.custom-bg-green {
+    background-color: #B0D9B1 !important;
+}
+
+.custom-margin {
+    margin-bottom: 1rem !important;
+}
+
+.form-control::placeholder {
+    color: gray !important;
+}
+
+.custom-width {
+    width: 500px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: green!important;
+  }
+  
+  .custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 255, 0, 0.25)
+  }
+  .custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+  }
+  .custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+    background-color: #C8FFC8; 
+  }

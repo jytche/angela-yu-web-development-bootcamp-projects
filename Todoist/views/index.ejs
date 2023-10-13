@@ -1,0 +1,64 @@
+<%- include("partials/header.ejs") %>
+
+<% const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; %>
+<% const d = new Date(); %>
+<% let wDay = weekday[d.getDay()]; %>
+<% const date = d.getDate(); %>
+<% const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]; %>
+<% const name = month[d.getMonth()]; %>
+
+<div class="background">
+    <div class="container border">
+        <div class="row rounded custom-width">
+            <div class="mx-auto">
+                <h1 class="title text-nowrap rounded py-3 px-5 custom-margin"><%= `${wDay}, ${date} ${name}` %></h1>
+
+                <% if (locals.itemList.length >= 1) { %>
+                    <ul class="list-group-item custom-bg-green rounded p-4 custom-margin">
+                        <% for (let i = 0; i < itemList.length; i++) { %>
+                            <div class="form-check py-2">
+                                <input class="form-check-input" type="checkbox" value="" id="item<%= i %>" name="checkbox<%= i %>" onclick="toggleStrikethrough(this)">
+                                <label class="form-check-label" for="item<%= i %>" id="label<%= i %>">
+                                    <%= itemList[i] %><br>
+                                </label>
+                            </div>
+                        <% } %>
+                    </ul>
+                <% } else { %>
+                    <div class="form-check custom-margin">
+                        <input class="form-check-input custom-margin" type="checkbox" value="" id="startingitem" disabled>
+                        <label class="form-check-label" for="startingitem">
+                            Add your first item here.
+                        </label>
+                        
+                    </div>
+                <% } %>
+
+                <form class="row g-3" action="/" method="POST">
+                    <div class="col">
+                    <label for="inputPassword2" class="visually-hidden">New Item</label>
+                    <input type="text" name="item" class="form-control" placeholder="New Item">
+                    </div>
+                    <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3 btn-dark">+</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include("partials/footer.ejs") %>
+
+<script>
+function toggleStrikethrough(checkbox) {
+    const labelId = checkbox.id.replace("item", "label");
+    const label = document.getElementById(labelId);
+
+    if (checkbox.checked) {
+        label.style.textDecoration = "line-through";
+    } else {
+        label.style.textDecoration = "none";
+    }
+}
+</script>

@@ -1,0 +1,70 @@
+<%- include("partials/header.ejs") %>
+
+<div class="background">
+    <div class="container border">
+        <div class="row rounded custom-width">
+            <div class="mx-auto">
+                <h1 class="title text-nowrap rounded py-3 px-5 custom-margin">Work</h1>
+
+                <% if (locals.wItemList.length >= 1) { %>
+                    <ul class="list-group-item custom-bg-green rounded p-4 custom-margin">
+                        <% for (let i = 0; i < wItemList.length; i++) { %>
+                            <div class="form-check py-2">
+                                <input class="form-check-input" type="checkbox" value="" id="item<%= i %>" name="checkbox<%= i %>" onclick="toggleStrikethrough(this)">
+                                <label class="form-check-label" for="item<%= i %>" id="label<%= i %>">
+                                    <%= wItemList[i] %><br>
+                                </label>
+                            </div>
+                        <% } %>
+                    </ul>
+                <% } else { %>
+                    <div class="form-check custom-margin">
+                        <input class="form-check-input custom-margin" type="checkbox" value="" id="startingitem" disabled>
+                        <label class="form-check-label" for="startingitem">
+                            Add your first item here.
+                        </label>
+                        
+                    </div>
+                <% } %>
+
+                <form class="row g-3" action="/work" method="POST">
+                    <div class="col">
+                    <label for="inputPassword2" class="visually-hidden">New Item</label>
+                    <input type="text" name="wItem" class="form-control" placeholder="New Item">
+                    </div>
+                    <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3 btn-dark">+</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleStrikethrough(checkbox) {
+    const labelId = checkbox.id.replace("item", "label");
+    const label = document.getElementById(labelId);
+
+    if (checkbox.checked) {
+        label.style.textDecoration = "line-through";
+    } else {
+        label.style.textDecoration = "none";
+    }
+}
+</script>
+
+<script>
+    $(document).ready(function() {
+        $( ".mr-auto .nav-item" ).bind( "click", function(event) {
+            event.preventDefault();
+            var clickedItem = $( this );
+            $( ".mr-auto .nav-item" ).each( function() {
+                $( this ).removeClass( "active" );
+            });
+            clickedItem.addClass( "active" );
+        });
+    });
+    </script>
+
+<%- include("partials/footer.ejs") %>

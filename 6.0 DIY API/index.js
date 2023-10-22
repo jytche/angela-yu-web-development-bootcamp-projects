@@ -9,17 +9,86 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //1. GET a random joke
 
+app.get("/random", (req, res) => {
+  const jokeIndex = Math.floor(Math.random() * jokes.length);
+  res.json(jokes[jokeIndex]);
+});
+
 //2. GET a specific joke
+
+app.get("/jokes/:id", (req, res) => {
+  const id = req.params.id;
+  res.json(jokes[id - 1]); 
+});
 
 //3. GET a jokes by filtering on the joke type
 
+app.get("/filter", (req, res) => {
+  const jokeType = req.query.type;
+  const foundJoke = jokes.filter((joke) => joke.jokeType === jokeType);
+  res.json(foundJoke); 
+});
+
 //4. POST a new joke
+
+app.post("/jokes", (req, res) => {
+  const newJoke = {
+    id: jokes.length + 1,
+    text: req.body.text,
+    type: req.body.type,
+  }
+  jokes.push(newJoke);
+  res.json(newJoke); 
+});
 
 //5. PUT a joke
 
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundJoke = jokes.find((joke) => joke.id === id);
+
+  if (!foundJoke) {
+    // Handle the case where the joke with the specified ID is not found
+    res.status(404).json({ error: 'Joke not found' });
+    return;
+  }
+
+  // Update the joke properties based on the request body
+  if (req.body.text) {
+    foundJoke.jokeText = req.body.text;
+  }
+
+  if (req.body.type) {
+    foundJoke.jokeType = req.body.type;
+  }
+
+  res.json(foundJoke);
+});
+
 //6. PATCH a joke
 
+app.patch("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const existingJoke = jokes.find((joke) => joke.id === id);
+  const replacementJoke = {
+    id: id,
+    jokeText: req.body.text || existingJoke.jokeText,
+    jokeType: req.body.type || existingJoke.jokeType,
+  }
+  const searchIndex = jokes.find((joke) => joke.id === id);
+  jokes[searchIndex] = replacementJoke;
+  res.json(replacementJoke);
+});
+
+
 //7. DELETE Specific joke
+
+app.delete("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const searchIndex = jokes.find((joke) => joke.id === id);
+  delete jokes[searchIndex];
+  res.json("Ok");
+});
 
 //8. DELETE All jokes
 
